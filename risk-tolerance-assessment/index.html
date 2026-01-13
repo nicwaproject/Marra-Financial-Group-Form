@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Risk Tolerance Assessment | Marra Financial Group</title>
+
+  <link rel="icon" href="/favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<main class="container">
+
+  <!-- HEADER -->
+  <header class="form-header">
+    <div class="brand">
+      <img src="/marra_logo.png" alt="Marra Financial Group" />
+    </div>
+
+    <div class="form-title">
+      <h1>RISK TOLERANCE ASSESSMENT</h1>
+      <p>Please select one answer for each question.</p>
+    </div>
+  </header>
+
+  <!-- STEP 1 -->
+  <section class="card step active">
+    <h2>Investment Objective</h2>
+
+    <label class="option">
+      <input type="radio" name="objective" value="accumulation" />
+      Wealth Accumulation
+    </label>
+
+    <label class="option">
+      <input type="radio" name="objective" value="maintenance" />
+      Wealth Maintenance
+    </label>
+
+    <label class="option">
+      <input type="radio" name="objective" value="distribution" />
+      Wealth Distribution
+    </label>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="card step">
+    <h2>Investment Time Horizon</h2>
+
+    <label class="option"><input type="radio" name="horizon" value="0-3"> 0–3 Years</label>
+    <label class="option"><input type="radio" name="horizon" value="3-5"> 3–5 Years</label>
+    <label class="option"><input type="radio" name="horizon" value="6-10"> 6–10 Years</label>
+    <label class="option"><input type="radio" name="horizon" value="11-15"> 11–15 Years</label>
+    <label class="option"><input type="radio" name="horizon" value="15+"> 15+ Years</label>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="card step">
+    <h2>Risk / Return Preference</h2>
+
+    <label class="option"><input type="radio" name="portfolio" value="A"> Portfolio A (High Risk)</label>
+    <label class="option"><input type="radio" name="portfolio" value="B"> Portfolio B</label>
+    <label class="option"><input type="radio" name="portfolio" value="C"> Portfolio C</label>
+    <label class="option"><input type="radio" name="portfolio" value="D"> Portfolio D</label>
+    <label class="option"><input type="radio" name="portfolio" value="E"> Portfolio E (Low Risk)</label>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="card step">
+    <h2>Risk Comfort Level</h2>
+
+    <input
+      type="range"
+      min="0"
+      max="10"
+      step="1"
+      id="risk-scale"
+      name="riskScale"
+    />
+
+    <div class="range-labels">
+      <span>Low</span>
+      <span>High</span>
+    </div>
+  </section>
+
+  <!-- STEP 5 -->
+  <section class="card step">
+    <h2>Recovery Time After Loss</h2>
+
+    <label class="option"><input type="radio" name="recovery" value="<18mo"> Less than 18 months</label>
+    <label class="option"><input type="radio" name="recovery" value="18-24mo"> 18–24 months</label>
+    <label class="option"><input type="radio" name="recovery" value="2-3yr"> 2–3 years</label>
+    <label class="option"><input type="radio" name="recovery" value="3-5yr"> 3–5 years</label>
+    <label class="option"><input type="radio" name="recovery" value="5+yr"> 5+ years</label>
+  </section>
+
+  <!-- STEP 6 -->
+  <section class="card step">
+    <h2>Income Stability</h2>
+
+    <label class="option"><input type="radio" name="incomeStability" value="very-stable"> Very Stable</label>
+    <label class="option"><input type="radio" name="incomeStability" value="mostly-stable"> Mostly Stable</label>
+    <label class="option"><input type="radio" name="incomeStability" value="somewhat-stable"> Somewhat Stable</label>
+    <label class="option"><input type="radio" name="incomeStability" value="not-stable"> Not Stable</label>
+  </section>
+
+  <!-- STEP 7 -->
+  <section class="card step">
+    <h2>Emergency Preparedness</h2>
+
+    <label class="option"><input type="radio" name="emergency" value="very-able"> Very Able</label>
+    <label class="option"><input type="radio" name="emergency" value="mostly-able"> Mostly Able</label>
+    <label class="option"><input type="radio" name="emergency" value="somewhat-able"> Somewhat Able</label>
+    <label class="option"><input type="radio" name="emergency" value="not-able"> Not Able</label>
+  </section>
+
+  <!-- STEP 8 -->
+  <section class="card step confirmation">
+    <h2>Confirmation</h2>
+
+    <div class="confirmation-field">
+      <span>Full Name</span>
+      <input type="text" id="client-name" required />
+    </div>
+
+    <div class="confirmation-field">
+      <span>Date</span>
+      <input type="date" id="submission-date" readonly />
+    </div>
+
+    <button class="submit-btn">Submit</button>
+  </section>
+
+  <!-- WARNING -->
+  <p id="step-warning" class="step-warning" style="display:none;">
+    Please select an answer to continue.
+  </p>
+
+  <!-- NAV -->
+  <div class="nav-bar">
+    <div class="step-indicator" id="current-step"></div>
+
+    <div class="nav-buttons">
+      <button id="prevBtn">Back</button>
+      <button id="nextBtn">Next</button>
+    </div>
+  </div>
+
+</main>
+
+<script src="risk.js"></script>
+</body>
+</html>
