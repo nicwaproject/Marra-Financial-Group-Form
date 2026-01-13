@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retirement Budget | Marra Financial Group</title>
+
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <main class="container">
+    <header class="form-header">
+      <div class="brand">
+        <img src="/marra_logo.png" alt="Marra Financial Group Logo" />
+      </div>
+
+      <div class="form-title">
+        <h1>RETIREMENT BUDGET</h1>
+        <p>Please enter your estimated monthly expenses.</p>
+      </div>
+      
+    </header>
+
+  <!-- STEP 1 (HOUSING) -->
+<section class="card step active">
+  <h2>Housing</h2>
+
+  <label class="money-field">
+    Mortgage / Rent
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="housing" name="mortgageRent" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Property Taxes
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="housing" name="propertyTaxes" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Homeowners / Renters Insurance
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="housing" name="homeInsurance" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Internet & Cable
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="housing" name="internetCable" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Utilities (Electric, Gas, Water, Trash)
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="housing" name="utilities" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Cell Phone
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="housing" name="cellPhone" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Home Maintenance & Repairs
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="housing" name="homeMaintenance" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    HOA or Condo Fees
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="housing" name="hoaFees" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Lawn Care / Snow Removal
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="housing" name="lawnCare" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Home Security
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="housing" name="homeSecurity" />
+    </div>
+  </label>
+
+  <div class="sticky-total">
+    <span>Housing Total</span>
+    <span>$<span id="housing-total">0.00</span></span>
+  </div>
+</section>
+
+<!-- STEP 2 (TRANSPORTATION) -->
+<section class="card step">
+  <h2>Transportation</h2>
+
+  <label class="money-field">
+    Vehicle Payment
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="transport" name="vehiclePayment" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Fuel / Gas
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="transport" name="fuelGas" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Maintenance & Repairs
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="transport" name="maintenanceRepairs" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Auto Insurance
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="transport" name="autoInsurance" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Registration / Inspection
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="transport" name="registrationInspection" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Parking / Tolls
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="transport" name="parkingTolls" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Public Transit
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="transport" name="publicTransit" />
+    </div>
+  </label>
+
+  <div class="sticky-total">
+    <span>Transportation Total</span>
+    <span>$<span id="transport-total">0.00</span></span>
+  </div>
+</section>
+
+<!-- STEP 3 (DAILY LIVING) -->
+<section class="card step">
+  <h2>Daily Living</h2>
+
+  <label class="money-field">
+    Groceries
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="living" name="groceries" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Clothing & Shoes
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="living" name="clothingShoes" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Pet Care
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="living" name="petCare" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Dining Out / Takeout
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="living" name="diningOut" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Household Supplies
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="living" name="householdSupplies" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Personal Care
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="living" name="personalCare" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Other
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="living" name="otherLiving" />
+    </div>
+  </label>
+
+  <div class="sticky-total">
+    <span>Daily Living Total</span>
+    <span>$<span id="living-total">0.00</span></span>
+  </div>
+</section>
+
+<!-- STEP 4 (HEALTH & INSURANCE) -->
+<section class="card step">
+  <h2>Health & Insurance</h2>
+
+  <label class="money-field">
+    Medicare Premiums (Part B, Part D)
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="health" name="medicarePremiums" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Medicare Supplement or Advantage Plan
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="health" name="medicareSupplement" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Dental Insurance / Out-of-pocket
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="health" name="dentalCare" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Vision Care
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="health" name="visionCare" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Hearing Aids
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="health" name="hearingAids" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Prescription Drugs
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="health" name="prescriptionDrugs" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Copays & Deductibles
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="health" name="copaysDeductibles" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Long-Term Care Insurance
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="health" name="longTermCareInsurance" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Life Insurance
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="health" name="lifeInsurance" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Other
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="health" name="otherHealth" />
+    </div>
+  </label>
+
+  <div class="sticky-total">
+    <span>Health & Insurance Total</span>
+    <span>$<span id="health-total">0.00</span></span>
+  </div>
+</section>
+
+<!-- STEP 5 (LIFESTYLE / RECREATIONS) -->
+<section class="card step">
+  <h2>Lifestyle / Recreations</h2>
+
+  <label class="money-field">
+    Travel & Vacations
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="lifestyle" name="travelVacations" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Hobbies / Clubs
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="lifestyle" name="hobbiesClubs" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Subscriptions
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="lifestyle" name="subscriptions" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Charitable Donations
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="lifestyle" name="charitableDonations" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Gifts (Birthdays, Holidays)
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="lifestyle" name="gifts" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Charitable Donations
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="lifestyle" name="additionalCharitableDonations" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Entertainment
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="lifestyle" name="entertainment" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Fitness / Classes
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="lifestyle" name="fitnessClasses" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Other
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="lifestyle" name="otherLifestyle" />
+    </div>
+  </label>
+
+  <div class="sticky-total">
+    <span>Lifestyle / Recreation Total</span>
+    <span>$<span id="lifestyle-total">0.00</span></span>
+  </div>
+</section>
+
+<!-- STEP 6 (DEBT & OBLIGATIONS) -->
+<section class="card step">
+  <h2>Debt & Obligation</h2>
+
+  <label class="money-field">
+    Credit Cards
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="debt" name="creditCards" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Personal Loans
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="debt" name="personalLoans" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Medical Bills
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="debt" name="medicalBills" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Taxes
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="debt" name="taxes" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Estimated Quarterly Tax Payments
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="debt" name="quarterlyTaxPayments" />
+    </div>
+  </label>
+
+  <label class="money-field">
+    Other
+    <div class="input-wrapper">
+      <span class="currency">$</span>
+      <input type="number" data-group="debt" name="otherDebt" />
+    </div>
+  </label>
+
+  <div class="sticky-total">
+    <span>Debt & Obligations Total</span>
+    <span>$<span id="debt-total">0.00</span></span>
+  </div>
+</section>
+
+<!-- STEP 7 (SUMMARY) -->
+<section class="summary step">
+  <h2>Total Monthly Budget</h2>
+
+  <div class="summary-list">
+    <div class="summary-row">
+      <span>Housing</span>
+      <span>$<span id="summary-housing">0.00</span></span>
+    </div>
+
+    <div class="summary-row">
+      <span>Transportation</span>
+      <span>$<span id="summary-transport">0.00</span></span>
+    </div>
+
+    <div class="summary-row">
+      <span>Daily Living</span>
+      <span>$<span id="summary-living">0.00</span></span>
+    </div>
+
+    <div class="summary-row">
+      <span>Health & Insurance</span>
+      <span>$<span id="summary-health">0.00</span></span>
+    </div>
+
+    <div class="summary-row">
+      <span>Lifestyle / Recreation</span>
+      <span>$<span id="summary-lifestyle">0.00</span></span>
+    </div>
+
+    <div class="summary-row">
+      <span>Debt & Obligation</span>
+      <span>$<span id="summary-debt">0.00</span></span>
+    </div>
+
+    <!-- nanti bisa tambah kategori lain di sini -->
+  </div>
+
+  <div class="summary-divider"></div>
+
+  <div class="summary-total">
+    <span>Total Monthly Budget</span>
+    <span>$<span id="grand-total">0.00</span></span>
+  </div>
+</section>
+
+<!-- STEP 8 (CONFIRMATION) -->
+
+<section class="card step confirmation">
+  <h2>Review & Confirmation</h2>
+
+  <p class="note">
+    Please confirm your name and the date below before submitting.
+  </p>
+
+  <div class="confirmation-field">
+    <span class="confirmation-label">Full Name</span>
+    <input type="text" id="client-name" required />
+  </div>
+
+  <div class="confirmation-field">
+    <span class="confirmation-label">Date</span>
+    <input type="date" id="submission-date" readonly />
+  </div>
+
+  <p class="confirm-hint">
+    By submitting, you confirm the information above is accurate.
+  </p>
+
+  <button class="submit-btn">
+    Submit
+  </button>
+</section>
+
+<!-- WARNING -->
+ <p id="step-warning" class="step-warning" style="display:none;">
+  Please enter at least one amount to continue.
+</p>
+
+<!-- NAVIGATION -->
+<div class="nav-bar">
+  <div class="step-indicator" id="current-step"></div>
+
+  <div class="nav-buttons">
+    <button id="prevBtn">Back</button>
+    <button id="nextBtn">Next</button>
+  </div>
+</div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
