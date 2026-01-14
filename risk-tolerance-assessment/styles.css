@@ -24,10 +24,7 @@ header {
 .form-header {
   text-align: center;
   margin-bottom: 32px;
-}
-
-.form-title {
-  background: #fff;
+    background: #fff;
   border-radius: 8px;
   padding: 20px;
   border-radius: 10px;
@@ -42,7 +39,7 @@ header {
 }
 
 .brand img {
-  height: 100px; /* kecil & profesional */
+  height: 72px; /* kecil & profesional */
   width: auto;
 }
 
@@ -69,15 +66,20 @@ h1 {
   margin: 16px 0;
 }
 
-.card h2 {
-  font-size: 15px;
+.question-title {
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  margin-bottom: 8px;
   color: var(--secondary-color);
-  margin-bottom: 16px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  padding-bottom: 6px;
+}
+
+.question-desc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #444;
+  margin-bottom: 12px;
 }
 
 .summary h2 {
@@ -334,8 +336,9 @@ input[readonly] {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(0,0,0,.08);
+  padding: 8px 0;
+  font-size: 14px;
+  border-bottom: none;
   font-size: 14px;
 }
 
@@ -350,6 +353,215 @@ input[readonly] {
   color: #666;
 }
 
+.helper-text {
+  font-size: 10px;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.question-block {
+  padding: 24px 0;
+  margin-top: 8px;
+}
+
+.question-block:last-child {
+  border-bottom: none;
+}
+
+.risk-table-wrapper {
+  margin: 10px 0;
+  overflow-x: auto;
+}
+
+.risk-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.risk-table th {
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #555;
+  padding: 10px;
+  background: #f2f4f7;
+}
+
+.risk-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  vertical-align: middle;
+}
+
+.risk-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.risk-table input[type="radio"] {
+  accent-color: var(--secondary-color);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.muted {
+  font-size: 12px;
+  color: #777;
+}
+
+.risk-summary {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.summary-title {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--secondary-color);
+  margin-bottom: 16px;
+}
+
+.risk-summary .summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.risk-summary .summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 12px;
+  color: var(--secondary-color);
+}
+
+.confirmation-form {
+  margin-top: 24px;
+    background: #f9fafb;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.risk-level {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  gap: 8px;
+  margin: 12px 0 6px;
+}
+
+.risk-level .option {
+  justify-content: center;
+  padding: 8px 0;
+  border-radius: 6px;
+  background: #f6f8fa;
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Hover / focus feel */
+.risk-level .option:hover {
+  background: #eef2f6;
+}
+
+/* Radio checked state */
+.risk-level input:checked + span,
+.risk-level .option:has(input:checked) {
+  background: rgba(8, 43, 76, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(8, 43, 76, 0.35);
+}
+
+/* ===============================
+   RISK LABELS (LOW / MED / HIGH)
+================================= */
+
+.risk-labels {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  margin-top: 6px;
+  font-size: 12px;
+  color: #666;
+}
+
+/* Posisi label mengikuti angka */
+.risk-labels .low {
+  grid-column: 1 / span 3;   /* 0–2 */
+  text-align: left;
+}
+
+.risk-labels .medium {
+  grid-column: 5 / span 3;   /* 4–6 */
+  text-align: center;
+}
+
+.risk-labels .high {
+  grid-column: 9 / span 3;   /* 8–10 */
+  text-align: right;
+}
+
+/* ===============================
+   TABLET
+================================= */
+@media (max-width: 768px) {
+  .risk-labels {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .risk-labels .low {
+    grid-column: 1 / span 2;
+  }
+
+  .risk-labels .medium {
+    grid-column: 3 / span 2;
+    text-align: center;
+  }
+
+  .risk-labels .high {
+    grid-column: 5 / span 2;
+    text-align: right;
+  }
+}
+
+/* ===============================
+   MOBILE
+================================= */
+@media (max-width: 480px) {
+  .risk-labels {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .risk-labels .low {
+    grid-column: 1 / span 1;
+    text-align: left;
+  }
+
+  .risk-labels .medium {
+    grid-column: 2 / span 2;
+    text-align: center;
+  }
+
+  .risk-labels .high {
+    grid-column: 4 / span 1;
+    text-align: right;
+  }
+}
+
+/* ===============================
+   TABLET
+================================= */
+@media (max-width: 768px) {
+  .risk-level {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
 @media (max-width: 480px) {
   .input-wrapper {
     width: 100%;
@@ -359,5 +571,22 @@ input[readonly] {
   .nav-bar {
     flex-direction: column;
     gap: 20px;
+  }
+
+  .risk-table th:nth-child(3),
+  .risk-table th:nth-child(4),
+  .risk-table td:nth-child(3),
+  .risk-table td:nth-child(4) {
+    white-space: nowrap;
+  }
+
+  .risk-level {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+
+  .risk-level .option {
+    padding: 10px 0;
+    font-size: 13px;
   }
 }

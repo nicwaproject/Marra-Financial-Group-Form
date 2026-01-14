@@ -26,99 +26,233 @@
 
   <!-- STEP 1 -->
   <section class="card step active">
-    <h2>Investment Objective</h2>
 
-    <label class="option">
-      <input type="radio" name="objective" value="accumulation" />
-      Wealth Accumulation
-    </label>
+    <!-- 1 -->
+    <div class="question-block">
+      <h2 class="question-title">1. Investment Objective</h2>
+      <p class="question-desc">Which of the following best describes your primary investment objective?</p>
 
-    <label class="option">
-      <input type="radio" name="objective" value="maintenance" />
-      Wealth Maintenance
-    </label>
+      <label class="option">
+        <input type="radio" name="objective" value="12" />
+        Wealth Accumulation Emphasis on continued capital appreciation in accordance with your overall risk tolerance.
+      </label>
 
-    <label class="option">
-      <input type="radio" name="objective" value="distribution" />
-      Wealth Distribution
-    </label>
-  </section>
+      <label class="option">
+        <input type="radio" name="objective" value="6" />
+        Wealth Maintenance Emphasis on maintaining a desired lifestyle or level of financial security.
+      </label>
 
-  <!-- STEP 2 -->
-  <section class="card step">
-    <h2>Investment Time Horizon</h2>
+      <label class="option">
+        <input type="radio" name="objective" value="1" />
+        Wealth Distribution Emphasis on using wealth for living expenses.
+      </label>
+    </div>
+    
+    <!-- 2 -->
+    <div class="question-block">
+      <h2 class="question-title">2. Assets Investment</h2>
+      <p class="question-desc">Approximately how many years do you expect to continue to invest your assets in the stock market?</p>
 
-    <label class="option"><input type="radio" name="horizon" value="0-3"> 0–3 Years</label>
-    <label class="option"><input type="radio" name="horizon" value="3-5"> 3–5 Years</label>
-    <label class="option"><input type="radio" name="horizon" value="6-10"> 6–10 Years</label>
-    <label class="option"><input type="radio" name="horizon" value="11-15"> 11–15 Years</label>
-    <label class="option"><input type="radio" name="horizon" value="15+"> 15+ Years</label>
-  </section>
+      <label class="option"><input type="radio" name="horizon" value="0"> 0–3 Years</label>
+      <label class="option"><input type="radio" name="horizon" value="3"> 3–5 Years</label>
+      <label class="option"><input type="radio" name="horizon" value="6"> 6–10 Years</label>
+      <label class="option"><input type="radio" name="horizon" value="9"> 11–15 Years</label>
+      <label class="option"><input type="radio" name="horizon" value="12"> 15+ Years</label>
+    </div>
+    
+    <!-- 3 -->
+    <div class="question-block">
+      <h2 class="question-title">3. Risk / Return Preference</h2>
+      <p class="question-desc">Assuming you are investing $100,000 and can choose from the five
+      hypothetical portfolios shown in the table below. The dollar values for each
+      portfolio represent two possible returns – low and high – after one year.</p>
 
-  <!-- STEP 3 -->
-  <section class="card step">
-    <h2>Risk / Return Preference</h2>
+      <p class="question-desc">Assuming there is an equal chance of achieving either result (low or high),
+      indicate which portfolio represents the maximum risk/return trade-off you
+      would be willing to accept.</p>
 
-    <label class="option"><input type="radio" name="portfolio" value="A"> Portfolio A (High Risk)</label>
-    <label class="option"><input type="radio" name="portfolio" value="B"> Portfolio B</label>
-    <label class="option"><input type="radio" name="portfolio" value="C"> Portfolio C</label>
-    <label class="option"><input type="radio" name="portfolio" value="D"> Portfolio D</label>
-    <label class="option"><input type="radio" name="portfolio" value="E"> Portfolio E (Low Risk)</label>
-  </section>
+      <div class="risk-table-wrapper">
+        <table class="risk-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Portfolio</th>
+              <th>Possible High Value</th>
+              <th>Possible Low Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <input type="radio" name="portfolio" value="12" />
+              </td>
+              <td>Portfolio A <span class="muted">(High Risk)</span></td>
+              <td>$160,000</td>
+              <td>$55,000</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="radio" name="portfolio" value="9" />
+              </td>
+              <td>Portfolio B</td>
+              <td>$150,000</td>
+              <td>$65,000</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="radio" name="portfolio" value="6" />
+              </td>
+              <td>Portfolio C</td>
+              <td>$135,000</td>
+              <td>$75,000</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="radio" name="portfolio" value="3" />
+              </td>
+              <td>Portfolio D</td>
+              <td>$125,000</td>
+              <td>$85,000</td>
+            </tr>
+            <tr>
+              <td>
+                <input type="radio" name="portfolio" value="0" />
+              </td>
+              <td>Portfolio E <span class="muted">(Low Risk)</span></td>
+              <td>$115,000</td>
+              <td>$95,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-  <!-- STEP 4 -->
-  <section class="card step">
-    <h2>Risk Comfort Level</h2>
+      <p class="helper-text">The maximum gain or loss on an investment is impossible to predict. The ranges shown in the chart are
+      hypothetical and are designed solely to gauge an investor’s tolerance for risk.</p>
+    </div>
 
-    <input
-      type="range"
-      min="0"
-      max="10"
-      step="1"
-      id="risk-scale"
-      name="riskScale"
-    />
 
-    <div class="range-labels">
-      <span>Low</span>
-      <span>High</span>
+    <!-- 4 -->
+    <div class="question-block">
+      <h2 class="question-title">4. Risk Level</h2>
+      <p class="question-desc">Please indicate the level of risk with which you are most comfortable (circle one response):</p>
+
+        <div class="risk-level">
+          <label class="option"><input type="radio" name="risklevel" value="0"> 0</label>
+          <label class="option"><input type="radio" name="risklevel" value="2"> 1</label>
+          <label class="option"><input type="radio" name="risklevel" value="4"> 2</label>
+          <label class="option"><input type="radio" name="risklevel" value="6"> 3</label>
+          <label class="option"><input type="radio" name="risklevel" value="8"> 4</label>
+          <label class="option"><input type="radio" name="risklevel" value="10"> 5</label>
+          <label class="option"><input type="radio" name="risklevel" value="12"> 6</label>
+          <label class="option"><input type="radio" name="risklevel" value="14"> 7</label>
+          <label class="option"><input type="radio" name="risklevel" value="16"> 8</label>
+          <label class="option"><input type="radio" name="risklevel" value="18"> 9</label>
+          <label class="option"><input type="radio" name="risklevel" value="20"> 10</label>
+        </div>
+      
+      <div class="risk-labels">
+        <span class="low">Low</span>
+        <span class="medium">Medium</span>
+        <span class="high">High</span>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="question-block">
+
+      <h2 class="question-title">5. Return Account</h2>
+      <p class="question-desc">How long are you prepared to wait for your account to return to its original
+      value after a down market?</p>
+
+      <label class="option"><input type="radio" name="recovery" value="0"> Less than 18 months</label>
+      <label class="option"><input type="radio" name="recovery" value="4"> 18–24 months</label>
+      <label class="option"><input type="radio" name="recovery" value="8"> 2–3 years</label>
+      <label class="option"><input type="radio" name="recovery" value="12"> 3–5 years</label>
+      <label class="option"><input type="radio" name="recovery" value="16"> 5+ years</label>
+    </div>
+
+    <!-- 6 -->
+    <div class="question-block">
+
+      <h2 class="question-title">6. Income</h2>
+      <p class="question-desc">My current income and future income (salary, pension, etc.) is:</h2>
+
+      <label class="option"><input type="radio" name="incomeStability" value="12"> Very Secure / Stable</label>
+      <label class="option"><input type="radio" name="incomeStability" value="9"> Mostly Secure / Stable</label>
+      <label class="option"><input type="radio" name="incomeStability" value="6"> Secure / Stable</label>
+      <label class="option"><input type="radio" name="incomeStability" value="3"> Somewhat Secure / Stable</label>
+      <label class="option"><input type="radio" name="incomeStability" value="0"> Not Secure / Stable</label>
+    </div>
+
+    <!-- 7 -->
+    <div class="question-block">
+
+      <h2 class="question-title">7. Financial Emergencies</h2>
+      <p class="question-desc">How able are you to handle financial emergencies with assets outside of your
+      investment account(s)?</p>
+
+      <label class="option"><input type="radio" name="emergency" value="12"> Very Able</label>
+      <label class="option"><input type="radio" name="emergency" value="9"> Mostly Able</label>
+      <label class="option"><input type="radio" name="emergency" value="6"> Able</label>
+      <label class="option"><input type="radio" name="emergency" value="3"> Somewhat Able</label>
+      <label class="option"><input type="radio" name="emergency" value="0"> Not Able</label>
     </div>
   </section>
 
-  <!-- STEP 5 -->
-  <section class="card step">
-    <h2>Recovery Time After Loss</h2>
-
-    <label class="option"><input type="radio" name="recovery" value="<18mo"> Less than 18 months</label>
-    <label class="option"><input type="radio" name="recovery" value="18-24mo"> 18–24 months</label>
-    <label class="option"><input type="radio" name="recovery" value="2-3yr"> 2–3 years</label>
-    <label class="option"><input type="radio" name="recovery" value="3-5yr"> 3–5 years</label>
-    <label class="option"><input type="radio" name="recovery" value="5+yr"> 5+ years</label>
-  </section>
-
-  <!-- STEP 6 -->
-  <section class="card step">
-    <h2>Income Stability</h2>
-
-    <label class="option"><input type="radio" name="incomeStability" value="very-stable"> Very Stable</label>
-    <label class="option"><input type="radio" name="incomeStability" value="mostly-stable"> Mostly Stable</label>
-    <label class="option"><input type="radio" name="incomeStability" value="somewhat-stable"> Somewhat Stable</label>
-    <label class="option"><input type="radio" name="incomeStability" value="not-stable"> Not Stable</label>
-  </section>
-
-  <!-- STEP 7 -->
-  <section class="card step">
-    <h2>Emergency Preparedness</h2>
-
-    <label class="option"><input type="radio" name="emergency" value="very-able"> Very Able</label>
-    <label class="option"><input type="radio" name="emergency" value="mostly-able"> Mostly Able</label>
-    <label class="option"><input type="radio" name="emergency" value="somewhat-able"> Somewhat Able</label>
-    <label class="option"><input type="radio" name="emergency" value="not-able"> Not Able</label>
-  </section>
-
-  <!-- STEP 8 -->
+  <!-- STEP 2 -->
   <section class="card step confirmation">
-    <h2>Confirmation</h2>
+
+  <!-- RISK SUMMARY -->
+  <div class="risk-summary">
+    <h3 class="summary-title">Risk Assessment Summary</h3>
+
+    <div class="summary-row">
+      <span>Investment Objective</span>
+      <span id="score-objective">0</span>
+    </div>
+
+    <div class="summary-row">
+      <span>Investment Horizon</span>
+      <span id="score-horizon">0</span>
+    </div>
+
+    <div class="summary-row">
+      <span>Risk / Return Preference</span>
+      <span id="score-portfolio">0</span>
+    </div>
+
+    <div class="summary-row">
+      <span>Risk Comfort Level</span>
+      <span id="score-risklevel">0</span>
+    </div>
+
+    <div class="summary-row">
+      <span>Recovery Time After Loss</span>
+      <span id="score-recovery">0</span>
+    </div>
+
+    <div class="summary-row">
+      <span>Income Stability</span>
+      <span id="score-income">0</span>
+    </div>
+
+    <div class="summary-row">
+      <span>Emergency Preparedness</span>
+      <span id="score-emergency">0</span>
+    </div>
+
+    <div class="summary-divider"></div>
+
+    <div class="summary-total">
+      <span>Total Risk Score</span>
+      <span id="total-risk-score">0</span>
+    </div>
+  </div>
+
+  <!-- CONFIRMATION -->
+  <div class="confirmation-form">
+
+    <h3 class="summary-title">Confirmation</h3>
 
     <div class="confirmation-field">
       <span>Full Name</span>
@@ -131,11 +265,12 @@
     </div>
 
     <button class="submit-btn">Submit</button>
+  </div>
   </section>
 
   <!-- WARNING -->
   <p id="step-warning" class="step-warning" style="display:none;">
-    Please select an answer to continue.
+    Please answer all questions in this section before continuing.
   </p>
 
   <!-- NAV -->
@@ -150,6 +285,6 @@
 
 </main>
 
-<script src="risk.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
