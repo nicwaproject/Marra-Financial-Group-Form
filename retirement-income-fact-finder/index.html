@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retirement Budget | Marra Financial Group</title>
+
+  <link rel="icon" href="assets/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <main class="container">
+    <header class="form-header">
+      <div class="brand">
+        <a href="/Marra-Financial-Group-Form/">
+          <img src="../assets/marra_logo.png" alt="Marra Financial Group Logo" />
+        </a>
+      </div>
+
+      <div class="form-title">
+        <h1>RETIREMENT INCOME FACT FINDER</h1>
+        <p>Please provide estimates where exact figures are not available.</p>
+      </div>
+      
+    </header>
+
+  <!-- STEP 1 (CLIENT INFO) -->
+<section class="card step active">
+  <h2>Client Information</h2>
+
+  <div class="form-grid">
+    <div class="field">
+      <label>Client Name</label>
+      <input type="text" name="clientName" required />
+    </div>
+
+    <div class="field">
+      <label>Spouse / Partner Name</label>
+      <input type="text" name="spouseName" />
+    </div>
+
+    <div class="field">
+      <label>Phone Number</label>
+      <input type="tel" name="phone" />
+    </div>
+
+    <div class="field">
+      <label>Spouse Date of Birth</label>
+      <input type="date" name="spouseDob" />
+    </div>
+
+        <div class="field">
+      <label>Client Date of Birth</label>
+      <input type="date" name="clientDob" />
+    </div>
+
+    <div class="field">
+      <label>Planned Retirement Date (Spouse)</label>
+      <input type="date" name="retirementSpouse" />
+    </div>
+
+    <div class="field">
+      <label>Planned Retirement Date (Client)</label>
+      <input type="date" name="retirementClient" />
+    </div>
+
+    <div class="field">
+      <label>Current Annual Income (Spouse)</label>
+      <input type="number" name="incomeSpouse" />
+    </div>
+
+    <div class="field">
+      <label>Current Annual Income (Client)</label>
+      <input type="number" name="incomeClient" />
+    </div>
+
+  </div>
+</section>
+
+<!-- STEP 2 (MONTHLY INCOME) -->
+<section class="card step monthly-income">
+  <h2>Monthly Income Sources</h2>
+
+  <div class="table-scroll">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Source</th>
+        <th>Client</th>
+        <th>Spouse</th>
+        <th>Joint</th>
+        <th>Current Value</th>
+        <th>Current Investment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Social Security @ 62</td>
+        <td><input type="number" name="ss62Client" /></td>
+        <td><input type="number" name="ss62Spouse" /></td>
+        <td><input type="number" name="ss62Joint" /></td>
+        <td><input type="number" name="ss62CurrentValue"></td>
+        <td><input type="number" name="ss62CurrentInvestment"></td>
+      </tr>
+
+      <tr>
+        <td>Social Security @ 67</td>
+        <td><input type="number" name="ss67Client" /></td>
+        <td><input type="number" name="ss67Spouse" /></td>
+        <td><input type="number" name="ss67Joint" /></td>
+        <td><input type="number" name="ss67CurrentValue"></td>
+        <td><input type="number" name="ss67CurrentInvestment"></td>
+      </tr>
+
+      <tr>
+        <td>Social Security @ 70</td>
+        <td><input type="number" name="ss70Client" /></td>
+        <td><input type="number" name="ss70Spouse" /></td>
+        <td><input type="number" name="ss70Joint" /></td>
+        <td><input type="number" name="ss70CurrentValue"></td>
+        <td><input type="number" name="ss70CurrentInvestment"></td>
+      </tr>
+
+      <tr>
+        <td>Pension</td>
+        <td><input type="number" name="pensionClient" /></td>
+        <td><input type="number" name="pensionSpouse" /></td>
+        <td><input type="number" name="pensionJoint" /></td>
+        <td><input type="number" name="pensionCurrentValue"></td>
+        <td><input type="number" name="pensionCurrentInvestment"></td>
+      </tr>
+
+      <tr>
+        <td>Rental Income</td>
+        <td><input type="number" name="rentalClient" /></td>
+        <td><input type="number" name="rentalSpouse" /></td>
+        <td><input type="number" name="rentalJoint" /></td>
+        <td><input type="number" name="rentalCurrentValue"></td>
+        <td><input type="number" name="rentalCurrentInvestment"></td>
+      </tr>
+
+      <tr>
+        <td>Other Income</td>
+        <td><input type="number" name="otherClient" /></td>
+        <td><input type="number" name="otherSpouse" /></td>
+        <td><input type="number" name="otherJoint" /></td>
+        <td><input type="number" name="otherCurrentValue"></td>
+        <td><input type="number" name="otherCurrentInvestment"></td>
+      </tr>
+
+      <tr class="table-total">
+        <td><strong>Total Monthly Income</strong></td>
+        <td><span id="income-client-total">$0</span></td>
+        <td><span id="income-spouse-total">$0</span></td>
+        <td><span id="income-joint-total">$0</span></td>
+        <td><span id="income-currentValue-total">$0</span></td>
+        <td><span id="income-currentInvestment-total">$0</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- STEP 3 (ASSETS) -->
+<section class="card step assets-section">
+  <h2>Assets</h2>
+  
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Asset</th>
+        <th>Client</th>
+        <th>Spouse</th>
+        <th>Joint</th>
+        <th>Current Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Savings</td>
+        <td><input type="number" name="savingsClient" /></td>
+        <td><input type="number" name="savingsSpouse" /></td>
+        <td><input type="number" name="savingsJoint" /></td>
+        <td><input type="number" name="savingsCurrentValue" /></td>
+      </tr>
+
+      <tr>
+        <td>Checking</td>
+        <td><input type="number" name="checkingClient" /></td>
+        <td><input type="number" name="checkingSpouse" /></td>
+        <td><input type="number" name="checkingJoint" /></td>
+        <td><input type="number" name="checkingCurrentValue" /></td>
+      </tr>
+
+      <tr>
+        <td>CDs</td>
+        <td><input type="number" name="cdsClient" /></td>
+        <td><input type="number" name="cdsSpouse" /></td>
+        <td><input type="number" name="cdsJoint" /></td>
+        <td><input type="number" name="cdsCurrentValue" /></td>
+      </tr>
+
+      <tr>
+        <td>Annuities</td>
+        <td><input type="number" name="annuitiesClient" /></td>
+        <td><input type="number" name="annuitiesSpouse" /></td>
+        <td><input type="number" name="annuitiesJoint" /></td>
+        <td><input type="number" name="annuitiesCurrentValue" /></td>
+      </tr>
+
+      <tr>
+        <td>Non-Qualified Brokerage Accounts</td>
+        <td><input type="number" name="brokerageClient" /></td>
+        <td><input type="number" name="brokerageSpouse" /></td>
+        <td><input type="number" name="brokerageJoint" /></td>
+        <td><input type="number" name="brokerageCurrentValue" /></td>
+      </tr>
+
+      <tr>
+        <td>Cryptocurrency</td>
+        <td><input type="number" name="cryptocurrencyClient" /></td>
+        <td><input type="number" name="cryptocurrencySpouse" /></td>
+        <td><input type="number" name="cryptocurrencyJoint" /></td>
+        <td><input type="number" name="cryptocurrencyCurrentValue" /></td>
+      </tr>
+
+      <tr>
+        <td>Gold / Silver</td>
+        <td><input type="number" name="goldClient" /></td>
+        <td><input type="number" name="goldSpouse" /></td>
+        <td><input type="number" name="goldJoint" /></td>
+        <td><input type="number" name="goldCurrentValue" /></td>
+      </tr>
+
+      <tr>
+        <td>Possible Inheritance</td>
+        <td><input type="number" name="inheritanceClient" /></td>
+        <td><input type="number" name="inheritanceSpouse" /></td>
+        <td><input type="number" name="inheritanceJoint" /></td>
+        <td><input type="number" name="inheritanceCurrentValue" /></td>
+      </tr>
+
+      <tr>
+        <td>IRA Accounts</td>
+        <td><input type="number" name="iraClient" /></td>
+        <td><input type="number" name="iraSpouse" /></td>
+        <td><input type="number" name="iraJoint" /></td>
+        <td><input type="number" name="iraCurrentValue" /></td>
+      </tr>
+
+      <tr>
+        <td>ROTH IRA Accounts</td>
+        <td><input type="number" name="rothIraClient" /></td>
+        <td><input type="number" name="rothIraSpouse" /></td>
+        <td><input type="number" name="rothIraJoint" /></td>
+        <td><input type="number" name="rothIraCurrentValue" /></td>
+      </tr>
+
+      <tr>
+        <td>401(k) / 403(b)</td>
+        <td><input type="number" name="401kClient" /></td>
+        <td><input type="number" name="401kSpouse" /></td>
+        <td><input type="number" name="401kJoint" /></td>
+        <td><input type="number" name="401kCurrentValue" /></td>
+      </tr>
+
+      <tr>
+        <td>ROTH 401(k) / 403(b)</td>
+        <td><input type="number" name="roth401kClient" /></td>
+        <td><input type="number" name="roth401kSpouse" /></td>
+        <td><input type="number" name="roth401kJoint" /></td>
+        <td><input type="number" name="roth401kCurrentValue" /></td>
+      </tr>
+
+      <tr class="table-total">
+        <td><strong>Total Assets</strong></td>
+        <td><span id="assets-client-total">$0</span></td>
+        <td><span id="assets-spouse-total">$0</span></td>
+        <td><span id="assets-joint-total">$0</span></td>
+        <td><span id="assets-currentValue-total">$0</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- STEP 4 (ADDITIONAL DETAIL) -->
+<section class="card step confirmation">
+  <h2>Additional Retirement Details</h2>
+  
+  <div class="field">
+    <label>Desired Income in Retirement</label>
+    <input type="number" name="desiredIncome" />
+  </div>
+
+  <div class="field">
+    <label>Do You have any large purchases planned? Approx. amount & time frame:</label>
+    <textarea name="largePurchases"></textarea>
+  </div>
+
+  <div class="field">
+    <label>Have you planned for Long Term Care?</label>
+    <textarea name="longTermCare"></textarea>
+  </div>
+
+  <div class="field">
+    <label>Have you done any estate planning?</label>
+    <textarea name="estatePlanning"></textarea>
+  </div>
+
+  <div class="field">
+    <label>Have you planned for cost-of-living adjustments to income?</label>
+    <textarea name="costLiving"></textarea>
+  </div>
+
+  <div class="field">
+    <label>Current home value</label>
+    <textarea name="homeValue"></textarea>
+  </div>
+
+  <div class="field">
+    <label>Will you be downsizing</label>
+    <textarea name="downsizing"></textarea>
+  </div>
+
+  <div class="field">
+    <label>Do you own other real estate? If so, current value:</label>
+    <textarea name="realEstate"></textarea>
+  </div>
+
+  <div class="field">
+    <label>Total Debt:</label>
+    <textarea name="totalDebt"></textarea>
+  </div>
+
+  
+
+  <hr />
+
+</section>
+
+<!-- STEP 8 (CONFIRMATION) -->
+
+<section class="card step confirmation">
+  <h2>Review & Confirmation</h2>
+
+  <p class="note">
+    Please confirm your name and the date below before submitting.
+  </p>
+
+  <div class="confirmation-field">
+    <span class="confirmation-label">Full Name</span>
+    <input type="text" id="client-name" required />
+  </div>
+
+  <div class="confirmation-field">
+    <span class="confirmation-label">Date</span>
+    <input type="date" id="submission-date" readonly />
+  </div>
+
+  <p class="confirm-hint">
+    By submitting, you confirm the information above is accurate.
+  </p>
+
+  <button class="submit-btn">
+    Submit
+  </button>
+</section>
+
+<!-- WARNING -->
+ <p id="step-warning" class="step-warning" style="display:none;">
+  Please enter at least one amount to continue.
+</p>
+
+<!-- NAVIGATION -->
+<div class="nav-bar">
+  <div class="step-indicator" id="current-step"></div>
+
+  <div class="nav-buttons">
+    <button id="prevBtn">Back</button>
+    <button id="nextBtn">Next</button>
+  </div>
+</div>
+
+  </main>
+
+    <div class="form-contact">
+    <strong>Diane Marra, RFC</strong><br />
+    📞 <a href="tel:16312553004">631.255.3004</a><br />
+    ✉️ <a href="mailto:dmarra@marrafinancialgroup.com">
+      dmarra@marrafinancialgroup.com
+    </a>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
