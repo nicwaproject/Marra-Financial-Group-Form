@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Risk Tolerance Assessment | Marra Financial Group</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
   <link rel="icon" href="/assets/favicon.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -258,7 +259,10 @@
 
     <div class="confirmation-field">
       <span>Full Name</span>
-      <input type="text" id="client-name" required />
+      <input type="text" id="client-name" class="signature-input" placeholder="Type your full name" required />
+
+      <!-- Signature preview -->
+      <div class="signature-preview" id="signature-preview">
     </div>
 
     <div class="confirmation-field">
@@ -286,6 +290,14 @@
   </div>
 
 </main>
+
+<div class="form-contact">
+  <strong>Diane Marra, RFC</strong><br />
+  📞 <a href="tel:16312553004">631.255.3004</a><br />
+  ✉️ <a href="mailto:dmarra@marrafinancialgroup.com">
+    dmarra@marrafinancialgroup.com
+  </a>
+</div>
 
 <script src="script.js"></script>
 </body>

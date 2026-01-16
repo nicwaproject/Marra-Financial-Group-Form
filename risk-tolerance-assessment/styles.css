@@ -298,6 +298,10 @@ button:hover:not(:disabled) {
   margin-bottom: 20px;
 }
 
+.confirmation-field span {
+  margin-bottom: 10px;
+}
+
 .confirmation-label {
   font-size: 13px;
   font-weight: 600;
@@ -506,6 +510,46 @@ input[readonly] {
   text-align: right;
 }
 
+
+/* CONTACT */
+.form-contact {
+  margin-top: 40px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  font-size: 13px;
+  color: #555;
+  text-align: center;
+}
+
+.form-contact strong {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+.form-contact a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* SIGNATURE PREVIEW */
+.signature-input {
+  height: 42px;
+  padding: 8px 12px;
+  margin-bottom: 30px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #cfd6dc;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: font-family 0.15s ease;
+}
+
+/* mode signature */
+.signature-input.is-signed {
+  font-family: 'Allura', 'Brush Script MT', cursive;
+  font-size: 26px;
+  text-align: center;
+  color: #082b4c;
+}
 /* ===============================
    TABLET
 ================================= */

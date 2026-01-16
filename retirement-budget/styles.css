@@ -327,6 +327,25 @@ input[readonly] {
   cursor: not-allowed;
 }
 
+.form-contact {
+  margin-top: 40px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  font-size: 13px;
+  color: #555;
+  text-align: center;
+}
+
+.form-contact strong {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+.form-contact a {
+  color: inherit;
+  text-decoration: none;
+}
+
 @media (max-width: 480px) {
   .input-wrapper {
     width: 100%;

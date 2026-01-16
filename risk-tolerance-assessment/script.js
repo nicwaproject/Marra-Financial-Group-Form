@@ -27,6 +27,20 @@ function hasAllSelections(step) {
   return true;
 }
 
+
+// SIGNATURE PREVIEW
+const nameInput = document.getElementById("client-name");
+
+nameInput.addEventListener("blur", () => {
+  if (nameInput.value.trim() !== "") {
+    nameInput.classList.add("is-signed");
+  }
+});
+
+nameInput.addEventListener("focus", () => {
+  nameInput.classList.remove("is-signed");
+});
+
 // ===============================
 // PAYLOAD BUILDER
 // ===============================
