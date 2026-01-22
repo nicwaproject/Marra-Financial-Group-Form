@@ -83,8 +83,7 @@ function buildPayload() {
       submissionDate: document.getElementById("submission-date")?.value || ""
     },
 
-    budget: {},
-
+    data: {},   // ⬅️ HARUS data (bukan budget)
     summary: {
       housing: 0,
       transport: 0,
@@ -92,7 +91,7 @@ function buildPayload() {
       health: 0,
       lifestyle: 0,
       debt: 0,
-      monthlyTotal: 0
+      grandTotal: 0
     }
   };
 
@@ -111,21 +110,20 @@ function buildPayload() {
     );
 
     let total = 0;
-    const items = {};
+    const groupData = {};
 
     inputs.forEach(input => {
       const value = getNumberValue(input);
-      items[input.name] = value;
+      groupData[input.name] = value;
       total += value;
     });
 
-    payload.budget[group] = {
-      items,
-      total
-    };
+    // ⬇️ SESUAI TEMPLATE SERVER
+    groupData.total = total;
+    payload.data[group] = groupData;
 
     payload.summary[group] = total;
-    payload.summary.monthlyTotal += total;
+    payload.summary.grandTotal += total;
   });
 
   return payload;
