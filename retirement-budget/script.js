@@ -293,8 +293,8 @@ async function submitForm(payload) {
 document.querySelector(".submit-btn").addEventListener("click", e => {
   e.preventDefault();
 
-  const payload = buildRiskPayload();
-  console.log("RISK TOLERANCE SUBMIT PAYLOAD:", payload);
+  const payload = buildPayload();
+  console.log("RETIREMENT BUDGET PAYLOAD:", payload);
 
   submitForm(payload);
 });
