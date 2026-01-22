@@ -1,7 +1,7 @@
-
+// ===============================
 // CONFIG
+// ===============================
 const formId = "retirement-budget";
-const apiEndpoint = "";
 
 const stepLabels = [
   "Housing",
@@ -17,6 +17,11 @@ const stepLabels = [
 // ===============================
 // HELPERS
 // ===============================
+function getNumberValue(input) {
+  const val = parseFloat(input.value);
+  return isNaN(val) ? 0 : val;
+}
+
 function formatCurrency(value) {
   return value.toFixed(2);
 }
@@ -29,26 +34,6 @@ function hasAnyValueInStep(stepElement) {
   });
 }
 
-function updateNextButtonState() {
-  const currentSection = steps[currentStep];
-
-  // Always enable on Summary & Confirmation
-  if (
-    currentSection.classList.contains("summary") ||
-    currentStep === steps.length - 1
-  ) {
-    nextBtn.disabled = false;
-    return;
-  }
-
-  nextBtn.disabled = !hasAnyValueInStep(currentSection);
-}
-
-function getNumberValue(input) {
-  const val = parseFloat(input.value);
-  return isNaN(val) ? 0 : val;
-}
-
 // ===============================
 // CALCULATION
 // ===============================
@@ -59,8 +44,7 @@ function calculateGroup(groupName, totalId, summaryId) {
 
   let sum = 0;
   inputs.forEach(input => {
-    const val = parseFloat(input.value);
-    if (!isNaN(val)) sum += val;
+    sum += getNumberValue(input);
   });
 
   document.getElementById(totalId).textContent = formatCurrency(sum);
@@ -80,50 +64,143 @@ function calculateAll() {
   const lifestyle = calculateGroup("lifestyle", "lifestyle-total", "summary-lifestyle");
   const debt = calculateGroup("debt", "debt-total", "summary-debt");
 
-  const grandTotal = housing + transport + living + health + lifestyle + debt;
+  const grandTotal =
+    housing + transport + living + health + lifestyle + debt;
 
   document.getElementById("grand-total").textContent =
     formatCurrency(grandTotal);
 }
 
 // ===============================
-// PAYLOAD
+// PAYLOAD BUILDER (FINAL)
 // ===============================
-
 function buildPayload() {
   const payload = {
     formId,
+
     meta: {
-      clientName: document.getElementById("client-name").value.trim(),
-      submissionDate: document.getElementById("submission-date").value
+      clientName: document.getElementById("client-name")?.value.trim() || "",
+      submissionDate: document.getElementById("submission-date")?.value || ""
     },
-    data: {},
-    totals: {}
+
+    budget: {},
+
+    summary: {
+      housing: 0,
+      transport: 0,
+      living: 0,
+      health: 0,
+      lifestyle: 0,
+      debt: 0,
+      monthlyTotal: 0
+    }
   };
 
-  const groups = ["housing", "transport", "living", "health", "lifestyle", "debt"];
+  const groups = [
+    "housing",
+    "transport",
+    "living",
+    "health",
+    "lifestyle",
+    "debt"
+  ];
 
   groups.forEach(group => {
-    const inputs = document.querySelectorAll(`input[data-group="${group}"]`);
-    let groupTotal = 0;
-    payload.data[group] = {};
+    const inputs = document.querySelectorAll(
+      `input[data-group="${group}"]`
+    );
+
+    let total = 0;
+    const items = {};
 
     inputs.forEach(input => {
-      const key = input.name;
       const value = getNumberValue(input);
-      payload.data[group][key] = value;
-      groupTotal += value;
+      items[input.name] = value;
+      total += value;
     });
 
-    payload.data[group].total = groupTotal;
-  });
+    payload.budget[group] = {
+      items,
+      total
+    };
 
-  payload.totals.monthlyTotal = parseFloat(
-    document.getElementById("grand-total").textContent
-  );
+    payload.summary[group] = total;
+    payload.summary.monthlyTotal += total;
+  });
 
   return payload;
 }
+
+// ===============================
+// STEPPER
+// ===============================
+let currentStep = 0;
+const steps = document.querySelectorAll(".step");
+const nextBtn = document.getElementById("nextBtn");
+const prevBtn = document.getElementById("prevBtn");
+const currentStepEl = document.getElementById("current-step");
+
+function updateNextButtonState() {
+  const currentSection = steps[currentStep];
+
+  // Always allow Summary & Confirmation
+  if (
+    currentSection.classList.contains("summary") ||
+    currentStep === steps.length - 1
+  ) {
+    nextBtn.disabled = false;
+    return;
+  }
+
+  nextBtn.disabled = !hasAnyValueInStep(currentSection);
+}
+
+function showStep(index) {
+  steps.forEach((step, i) => {
+    step.classList.toggle("active", i === index);
+  });
+
+  currentStepEl.textContent =
+    `${stepLabels[index]} · Step ${index + 1} of ${steps.length}`;
+
+  prevBtn.style.display = index === 0 ? "none" : "inline-block";
+
+  if (index === steps.length - 1) {
+    nextBtn.style.display = "none";
+  } else {
+    nextBtn.style.display = "inline-block";
+    nextBtn.textContent = "Next";
+  }
+
+  updateNextButtonState();
+}
+
+// ===============================
+// NAVIGATION
+// ===============================
+nextBtn.addEventListener("click", () => {
+  const currentSection = steps[currentStep];
+  const warning = document.getElementById("step-warning");
+
+  if (
+    !currentSection.classList.contains("summary") &&
+    !hasAnyValueInStep(currentSection)
+  ) {
+    warning.style.display = "block";
+    return;
+  }
+
+  warning.style.display = "none";
+  currentStep++;
+  showStep(currentStep);
+});
+
+prevBtn.addEventListener("click", () => {
+  if (currentStep > 0) {
+    currentStep--;
+    showStep(currentStep);
+  }
+});
 
 // ===============================
 // INPUT LISTENERS
@@ -146,88 +223,78 @@ document.addEventListener("DOMContentLoaded", () => {
   if (dateInput) {
     dateInput.value = new Date().toISOString().split("T")[0];
   }
+
+  calculateAll();
+  showStep(0);
 });
 
-// ===============================
-// STEPPER
-// ===============================
-let currentStep = 0;
-const steps = document.querySelectorAll(".step");
-const nextBtn = document.getElementById("nextBtn");
-const prevBtn = document.getElementById("prevBtn");
-const currentStepEl = document.getElementById("current-step");
 
 // ===============================
-// SHOW STEP
+// API CONFIG
 // ===============================
-function showStep(index) {
-  steps.forEach((step, i) => {
-    step.classList.toggle("active", i === index);
-  });
+const API_URL = "https://api-marra-financial-group-form.vercel.app/api/submit";
 
-  // Contextual step indicator
-  currentStepEl.textContent = `${stepLabels[index]} · Step ${index + 1} of ${steps.length}`;
+// ===============================
+// UNIVERSAL SUBMIT
+// ===============================
+async function submitForm(payload) {
+  try {
+    console.log("Submitting payload:", payload);
 
-  // Back button
-  prevBtn.style.display = index === 0 ? "none" : "inline-block";
+    // Optional: disable button
+    const btn = document.querySelector(".submit-btn");
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Submitting...";
+    }
 
-  // Hide Next button on Confirmation
-  if (index === steps.length - 1) {
-    nextBtn.style.display = "none";
-  } else {
-    nextBtn.style.display = "inline-block";
-    nextBtn.textContent = "Next";
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      console.error("API error:", data);
+      alert("❌ Submission failed. Please try again.");
+      return;
+    }
+
+    console.log("API success:", data);
+
+    alert(
+      "✅ Your form was submitted successfully!\n\n" +
+      "A PDF copy has been sent to Marra Financial Group."
+    );
+
+    // Optional: redirect / reset
+    // window.location.href = "/thank-you.html";
+    // document.querySelector("form")?.reset();
+
+  } catch (err) {
+    console.error("Submit error:", err);
+    alert("❌ Network error. Please check your connection and try again.");
+  } finally {
+    const btn = document.querySelector(".submit-btn");
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "Submit";
+    }
   }
 }
 
 // ===============================
-// NAVIGATION
-// ===============================
-nextBtn.addEventListener("click", () => {
-  const currentSection = steps[currentStep];
-  const warning = document.getElementById("step-warning");
-
-  // Skip validation for Summary
-  if (currentSection.classList.contains("summary")) {
-    warning.style.display = "none";
-    currentStep++;
-    showStep(currentStep);
-    return;
-  }
-
-  // Validation for input steps
-  if (!hasAnyValueInStep(currentSection)) {
-    warning.style.display = "block";
-    return;
-  }
-
-  warning.style.display = "none";
-  currentStep++;
-  showStep(currentStep);
-});
-
-prevBtn.addEventListener("click", () => {
-  if (currentStep > 0) {
-    currentStep--;
-    showStep(currentStep);
-  }
-});
-
-// ===============================
-// INIT
-// ===============================
-showStep(currentStep);
-updateNextButtonState();
-
-// ===============================
 // SUBMIT HANDLER
 // ===============================
-
 document.querySelector(".submit-btn").addEventListener("click", e => {
   e.preventDefault();
 
-  const payload = buildPayload();
-  console.log("SUBMIT PAYLOAD:", payload);
+  const payload = buildRiskPayload();
+  console.log("RISK TOLERANCE SUBMIT PAYLOAD:", payload);
 
-  // next step: fetch(apiEndpoint, ...)
+  submitForm(payload);
 });

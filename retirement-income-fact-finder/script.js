@@ -6,78 +6,13 @@ const formId = "retirement-income-fact-finder";
 /* ===============================
    HELPERS
 ================================= */
-function getNumber(value) {
-  const num = parseFloat(value);
-  return isNaN(num) ? 0 : num;
-}
+const num = v => {
+  const n = parseFloat(v);
+  return isNaN(n) ? 0 : n;
+};
 
-function formatCurrency(value) {
-  return "$" + value.toLocaleString("en-US", {
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0
-  });
-}
-
-/* ===============================
-   MONTHLY INCOME TOTALS (STEP 2)
-================================= */
-function calculateMonthlyIncomeTotals() {
-  const section = document.querySelector(".monthly-income");
-  if (!section) return;
-
-  const totals = {
-    client: 0,
-    spouse: 0,
-    joint: 0,
-    currentValue: 0,
-    currentInvestment: 0
-  };
-
-  section.querySelectorAll("input[type='number']").forEach(input => {
-    const val = getNumber(input.value);
-
-    if (input.name.endsWith("Client")) totals.client += val;
-    if (input.name.endsWith("Spouse")) totals.spouse += val;
-    if (input.name.endsWith("Joint")) totals.joint += val;
-    if (input.name.endsWith("CurrentValue")) totals.currentValue += val;
-    if (input.name.endsWith("CurrentInvestment")) totals.currentInvestment += val;
-  });
-
-  document.getElementById("income-client-total").textContent = formatCurrency(totals.client);
-  document.getElementById("income-spouse-total").textContent = formatCurrency(totals.spouse);
-  document.getElementById("income-joint-total").textContent = formatCurrency(totals.joint);
-  document.getElementById("income-currentValue-total").textContent = formatCurrency(totals.currentValue);
-  document.getElementById("income-currentInvestment-total").textContent = formatCurrency(totals.currentInvestment);
-}
-
-/* ===============================
-   ASSETS TOTALS (STEP 3)
-================================= */
-function calculateAssetsTotals() {
-  const section = document.querySelector(".assets-section");
-  if (!section) return;
-
-  const totals = {
-    client: 0,
-    spouse: 0,
-    joint: 0,
-    currentValue: 0
-  };
-
-  section.querySelectorAll("input[type='number']").forEach(input => {
-    const val = getNumber(input.value);
-
-    if (input.name.endsWith("Client")) totals.client += val;
-    if (input.name.endsWith("Spouse")) totals.spouse += val;
-    if (input.name.endsWith("Joint")) totals.joint += val;
-    if (input.name.endsWith("CurrentValue")) totals.currentValue += val;
-  });
-
-  document.getElementById("assets-client-total").textContent = formatCurrency(totals.client);
-  document.getElementById("assets-spouse-total").textContent = formatCurrency(totals.spouse);
-  document.getElementById("assets-joint-total").textContent = formatCurrency(totals.joint);
-  document.getElementById("assets-currentValue-total").textContent = formatCurrency(totals.currentValue);
-}
+const byName = name =>
+  document.querySelector(`[name="${name}"]`)?.value || "";
 
 /* ===============================
    STEP NAVIGATION
@@ -90,15 +25,13 @@ const stepIndicator = document.getElementById("current-step");
 const warning = document.getElementById("step-warning");
 
 function showStep(index) {
-  steps.forEach((step, i) => {
-    step.classList.toggle("active", i === index);
-  });
+  steps.forEach((step, i) =>
+    step.classList.toggle("active", i === index)
+  );
 
   stepIndicator.textContent = `Step ${index + 1} of ${steps.length}`;
-
   prevBtn.style.display = index === 0 ? "none" : "inline-block";
   nextBtn.style.display = index === steps.length - 1 ? "none" : "inline-block";
-
   warning.style.display = "none";
 }
 
@@ -108,51 +41,193 @@ nextBtn.addEventListener("click", () => {
 });
 
 prevBtn.addEventListener("click", () => {
-  if (currentStep > 0) {
-    currentStep--;
-    showStep(currentStep);
-  }
+  if (currentStep > 0) currentStep--;
+  showStep(currentStep);
 });
 
 /* ===============================
-   PAYLOAD BUILDER
+   TOTAL CALCULATIONS
 ================================= */
-function buildPayload() {
-  const payload = {
-    formId,
-    meta: {
-      clientName: document.getElementById("client-name")?.value || "",
-      submissionDate: document.getElementById("submission-date")?.value || ""
-    },
-    clientInfo: {},
-    monthlyIncome: {},
-    assets: {},
-    additionalDetails: {}
+function calcIncomeTotals() {
+  const totals = {
+    client: 0,
+    spouse: 0,
+    joint: 0,
+    currentValue: 0,
+    currentInvestment: 0
   };
 
-  /* Client Info */
-  document.querySelectorAll("[name]").forEach(input => {
-    if (input.closest(".form-grid")) {
-      payload.clientInfo[input.name] = input.value;
+  document
+    .querySelectorAll(".monthly-income input[type='number']")
+    .forEach(i => {
+      const v = num(i.value);
+      if (i.name.endsWith("Client")) totals.client += v;
+      if (i.name.endsWith("Spouse")) totals.spouse += v;
+      if (i.name.endsWith("Joint")) totals.joint += v;
+      if (i.name.endsWith("CurrentValue")) totals.currentValue += v;
+      if (i.name.endsWith("CurrentInvestment")) totals.currentInvestment += v;
+    });
+
+  return totals;
+}
+
+function calcAssetTotals() {
+  const totals = {
+    client: 0,
+    spouse: 0,
+    joint: 0,
+    currentValue: 0
+  };
+
+  document
+    .querySelectorAll(".assets-section input[type='number']")
+    .forEach(i => {
+      const v = num(i.value);
+      if (i.name.endsWith("Client")) totals.client += v;
+      if (i.name.endsWith("Spouse")) totals.spouse += v;
+      if (i.name.endsWith("Joint")) totals.joint += v;
+      if (i.name.endsWith("CurrentValue")) totals.currentValue += v;
+    });
+
+  return totals;
+}
+
+/* ===============================
+   PAYLOAD BUILDER (FINAL)
+================================= */
+function buildPayload() {
+  return {
+    formId,
+
+    meta: {
+      clientName: byName("clientName"),
+      spouseName: byName("spouseName"),
+      phone: byName("phone"),
+      clientDob: byName("clientDob"),
+      spouseDob: byName("spouseDob"),
+      retirementClient: byName("retirementClient"),
+      retirementSpouse: byName("retirementSpouse"),
+      submissionDate: document.getElementById("submission-date")?.value || ""
+    },
+
+    income: {
+      ss62: buildIncomeRow("ss62"),
+      ss67: buildIncomeRow("ss67"),
+      ss70: buildIncomeRow("ss70"),
+      pension: buildIncomeRow("pension"),
+      rental: buildIncomeRow("rental"),
+      other: buildIncomeRow("other"),
+      totals: calcIncomeTotals()
+    },
+
+    assets: {
+      savings: buildAssetRow("savings"),
+      checking: buildAssetRow("checking"),
+      cds: buildAssetRow("cds"),
+      annuities: buildAssetRow("annuities"),
+      brokerage: buildAssetRow("brokerage"),
+      crypto: buildAssetRow("cryptocurrency"),
+      gold: buildAssetRow("gold"),
+      inheritance: buildAssetRow("inheritance"),
+      ira: buildAssetRow("ira"),
+      rothIra: buildAssetRow("rothIra"),
+      k401: buildAssetRow("401k"),
+      roth401: buildAssetRow("roth401k"),
+      totals: calcAssetTotals()
+    },
+
+    additional: {
+      desiredIncome: byName("desiredIncome"),
+      largePurchases: byName("largePurchases"),
+      longTermCare: byName("longTermCare"),
+      estatePlanning: byName("estatePlanning"),
+      costLiving: byName("costLiving"),
+      homeValue: byName("homeValue"),
+      downsizing: byName("downsizing"),
+      realEstate: byName("realEstate"),
+      totalDebt: byName("totalDebt")
     }
-  });
+  };
+}
 
-  /* Monthly Income */
-  document.querySelectorAll(".monthly-income input[type='number']").forEach(input => {
-    payload.monthlyIncome[input.name] = getNumber(input.value);
-  });
+/* ===============================
+   ROW BUILDERS
+================================= */
+function buildIncomeRow(prefix) {
+  return {
+    client: num(byName(`${prefix}Client`)),
+    spouse: num(byName(`${prefix}Spouse`)),
+    joint: num(byName(`${prefix}Joint`)),
+    currentValue: num(byName(`${prefix}CurrentValue`)),
+    currentInvestment: num(byName(`${prefix}CurrentInvestment`))
+  };
+}
 
-  /* Assets */
-  document.querySelectorAll(".assets-section input[type='number']").forEach(input => {
-    payload.assets[input.name] = getNumber(input.value);
-  });
+function buildAssetRow(prefix) {
+  return {
+    client: num(byName(`${prefix}Client`)),
+    spouse: num(byName(`${prefix}Spouse`)),
+    joint: num(byName(`${prefix}Joint`)),
+    currentValue: num(byName(`${prefix}CurrentValue`))
+  };
+}
 
-  /* Additional Details */
-  document.querySelectorAll("textarea").forEach(input => {
-    payload.additionalDetails[input.name] = input.value;
-  });
+// ===============================
+// API CONFIG
+// ===============================
+const API_URL = "https://api-marra-financial-group-form.vercel.app/api/submit";
 
-  return payload;
+// ===============================
+// UNIVERSAL SUBMIT
+// ===============================
+async function submitForm(payload) {
+  try {
+    console.log("Submitting payload:", payload);
+
+    // Optional: disable button
+    const btn = document.querySelector(".submit-btn");
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = "Submitting...";
+    }
+
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      console.error("API error:", data);
+      alert("❌ Submission failed. Please try again.");
+      return;
+    }
+
+    console.log("API success:", data);
+
+    alert(
+      "✅ Your form was submitted successfully!\n\n" +
+      "A PDF copy has been sent to Marra Financial Group."
+    );
+
+    // Optional: redirect / reset
+    // window.location.href = "/thank-you.html";
+    // document.querySelector("form")?.reset();
+
+  } catch (err) {
+    console.error("Submit error:", err);
+    alert("❌ Network error. Please check your connection and try again.");
+  } finally {
+    const btn = document.querySelector(".submit-btn");
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = "Submit";
+    }
+  }
 }
 
 /* ===============================
@@ -162,31 +237,25 @@ document.querySelector(".submit-btn")?.addEventListener("click", e => {
   e.preventDefault();
 
   const payload = buildPayload();
-  console.log("RETIREMENT FACT FINDER PAYLOAD:", payload);
+  console.log("INCOME FACT FINDER PAYLOAD:", payload);
 
-  // next step: fetch(endpoint, { method: "POST", body: JSON.stringify(payload) })
+  submitForm(payload);
 });
 
 /* ===============================
-   AUTO INIT
+   INIT
 ================================= */
 document.addEventListener("DOMContentLoaded", () => {
   const dateInput = document.getElementById("submission-date");
   if (dateInput) {
     dateInput.value = new Date().toISOString().split("T")[0];
   }
-
   showStep(0);
-  calculateMonthlyIncomeTotals();
-  calculateAssetsTotals();
 });
 
-/* ===============================
-   INPUT LISTENERS
-================================= */
 document.addEventListener("input", e => {
   if (e.target.type === "number") {
-    calculateMonthlyIncomeTotals();
-    calculateAssetsTotals();
+    calcIncomeTotals();
+    calcAssetTotals();
   }
 });
