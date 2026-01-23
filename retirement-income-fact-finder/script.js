@@ -68,6 +68,17 @@ function calcIncomeTotals() {
       if (i.name.endsWith("CurrentInvestment")) totals.currentInvestment += v;
     });
 
+    document.getElementById("income-client-total").textContent =
+    "$" + totals.client.toLocaleString("en-US");
+  document.getElementById("income-spouse-total").textContent =
+    "$" + totals.spouse.toLocaleString("en-US");
+  document.getElementById("income-joint-total").textContent =
+    "$" + totals.joint.toLocaleString("en-US");
+  document.getElementById("income-currentValue-total").textContent =
+    "$" + totals.currentValue.toLocaleString("en-US");
+  document.getElementById("income-currentInvestment-total").textContent =
+    "$" + totals.currentInvestment.toLocaleString("en-US");
+    
   return totals;
 }
 
@@ -88,6 +99,15 @@ function calcAssetTotals() {
       if (i.name.endsWith("Joint")) totals.joint += v;
       if (i.name.endsWith("CurrentValue")) totals.currentValue += v;
     });
+
+    document.getElementById("assets-client-total").textContent =
+    "$" + totals.client.toLocaleString("en-US");
+    document.getElementById("assets-spouse-total").textContent =
+    "$" + totals.spouse.toLocaleString("en-US");
+    document.getElementById("assets-joint-total").textContent =
+    "$" + totals.joint.toLocaleString("en-US");
+    document.getElementById("assets-currentValue-total").textContent =
+    "$" + totals.currentValue.toLocaleString("en-US");
 
   return totals;
 }
