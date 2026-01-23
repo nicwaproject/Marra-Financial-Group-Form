@@ -78,7 +78,7 @@ function calcIncomeTotals() {
     "$" + totals.currentValue.toLocaleString("en-US");
   document.getElementById("income-currentInvestment-total").textContent =
     "$" + totals.currentInvestment.toLocaleString("en-US");
-    
+
   return totals;
 }
 
@@ -229,10 +229,8 @@ async function submitForm(payload) {
 
     console.log("API success:", data);
 
-    alert(
-      "✅ Your form was submitted successfully!\n\n" +
-      "A PDF copy has been sent to Marra Financial Group."
-    );
+    window.location.href =
+  "https://nicwaproject.github.io/Marra-Financial-Group-Form/thank-you/";
 
     // Optional: redirect / reset
     // window.location.href = "/thank-you.html";
