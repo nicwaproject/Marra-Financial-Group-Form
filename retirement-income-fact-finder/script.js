@@ -173,35 +173,35 @@ function buildPayload() {
       desiredIncome: byName("desiredIncome"),
 
       largePurchases: {
-        answer: byName("largePurchasesYN"),
-        explanation: byName("largePurchases")
+        yn: byName("largePurchasesYN"),
+        note: byName("largePurchases")
       },
 
       longTermCare: {
-        answer: byName("longTermCareYN"),
-        explanation: byName("longTermCare")
+        yn: byName("longTermCareYN"),
+        note: byName("longTermCare")
       },
 
       estatePlanning: {
-        answer: byName("estatePlanningYN"),
-        explanation: byName("estatePlanning")
+        yn: byName("estatePlanningYN"),
+        note: byName("estatePlanning")
       },
 
       costLiving: {
-        answer: byName("costLivingYN"),
-        explanation: byName("costLiving")
+        yn: byName("costLivingYN"),
+        note: byName("costLiving")
       },
 
       homeValue: byName("homeValue"),
 
       downsizing: {
-        answer: byName("downsizingYN"),
-        explanation: byName("downsizing")
+        yn: byName("downsizingYN"),
+        note: byName("downsizing")
       },
 
       realEstate: {
-        answer: byName("realEstateYN"),
-        explanation: byName("realEstate")
+        yn: byName("realEstateYN"),
+        note: byName("realEstate")
       },
 
       totalDebt: byName("totalDebt")
