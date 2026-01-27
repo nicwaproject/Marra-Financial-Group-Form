@@ -11,8 +11,10 @@ const num = v => {
   return isNaN(n) ? 0 : n;
 };
 
-const byName = name =>
-  document.querySelector(`[name="${name}"]`)?.value || "";
+const additionalSection = document.querySelector(".additional-section");
+
+const byAdditional = name =>
+  additionalSection?.querySelector(`[name="${name}"]`)?.value || "";
 
 document.addEventListener("change", e => {
   if (e.target.tagName === "SELECT") {
@@ -170,41 +172,41 @@ function buildPayload() {
     },
 
     additional: {
-      desiredIncome: byName("desiredIncome"),
+      desiredIncome: byAdditional("desiredIncome"),
 
       largePurchases: {
-        yn: byName("largePurchasesYN"),
-        note: byName("largePurchases")
+        yn: byAdditional("largePurchasesYN"),
+        note: byAdditional("largePurchases")
       },
 
       longTermCare: {
-        yn: byName("longTermCareYN"),
-        note: byName("longTermCare")
+        yn: byAdditional("longTermCareYN"),
+        note: byAdditional("longTermCare")
       },
 
       estatePlanning: {
-        yn: byName("estatePlanningYN"),
-        note: byName("estatePlanning")
+        yn: byAdditional("estatePlanningYN"),
+        note: byAdditional("estatePlanning")
       },
 
       costLiving: {
-        yn: byName("costLivingYN"),
-        note: byName("costLiving")
+        yn: byAdditional("costLivingYN"),
+        note: byAdditional("costLiving")
       },
 
-      homeValue: byName("homeValue"),
+      homeValue: byAdditional("homeValue"),
 
       downsizing: {
-        yn: byName("downsizingYN"),
-        note: byName("downsizing")
+        yn: byAdditional("downsizingYN"),
+        note: byAdditional("downsizing")
       },
 
       realEstate: {
-        yn: byName("realEstateYN"),
-        note: byName("realEstate")
+        yn: byAdditional("realEstateYN"),
+        note: byAdditional("realEstate")
       },
 
-      totalDebt: byName("totalDebt")
+      totalDebt: byAdditional("totalDebt")
     }
   };
 }
