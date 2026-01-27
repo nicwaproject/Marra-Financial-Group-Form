@@ -16,6 +16,9 @@ const additionalSection = document.querySelector(".additional-section");
 const byAdditional = name =>
   additionalSection?.querySelector(`[name="${name}"]`)?.value || "";
 
+const byName = name =>
+  document.querySelector(`[name="${name}"]`)?.value || "";
+
 document.addEventListener("change", e => {
   if (e.target.tagName === "SELECT") {
     const textarea = e.target.closest(".field")?.querySelector("textarea");
