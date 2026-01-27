@@ -24,7 +24,7 @@ header {
 .form-header {
   text-align: center;
   margin-bottom: 32px;
-    background: #fff;
+  background: #fff;
   border-radius: 8px;
   padding: 20px;
   border-radius: 10px;
@@ -405,9 +405,74 @@ input[readonly] {
   padding: 0 16px;
 }
 
+/* ===============================
+   YES / NO + EXPLANATION FIELDS
+================================= */
+
+.field select {
+  height: 40px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.2);
+  background-color: #ffffff;
+  color: var(--secondary-color);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none; /* remove default arrow (modern look) */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23082b4c' viewBox='0 0 16 16'%3E%3Cpath d='M4.646 6.646a.5.5 0 0 1 .708 0L8 9.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  cursor: pointer;
+}
+
+.field select:focus {
+  border-color: var(--secondary-color);
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(8, 43, 76, 0.15);
+}
+
+/* Explanation textarea */
+.field textarea {
+  margin-top: 8px;
+  min-height: 70px;
+  resize: vertical;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.2);
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f9fafb; /* soft background */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field textarea:focus {
+  border-color: var(--secondary-color);
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(8, 43, 76, 0.15);
+}
+
+/* Optional: visual grouping for YES/NO questions */
+.field select + textarea {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.field textarea {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+    .field select {
+    font-size: 14px;
+  }
+
+  .field textarea {
+    font-size: 14px;
   }
 }
 

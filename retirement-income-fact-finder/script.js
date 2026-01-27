@@ -14,6 +14,19 @@ const num = v => {
 const byName = name =>
   document.querySelector(`[name="${name}"]`)?.value || "";
 
+document.addEventListener("change", e => {
+  if (e.target.tagName === "SELECT") {
+    const textarea = e.target.closest(".field")?.querySelector("textarea");
+    if (!textarea) return;
+
+    if (e.target.value === "yes") {
+      textarea.style.display = "block";
+    } else {
+      textarea.style.display = "none";
+      textarea.value = "";
+    }
+  }
+});
 /* ===============================
    STEP NAVIGATION
 ================================= */
@@ -158,13 +171,39 @@ function buildPayload() {
 
     additional: {
       desiredIncome: byName("desiredIncome"),
-      largePurchases: byName("largePurchases"),
-      longTermCare: byName("longTermCare"),
-      estatePlanning: byName("estatePlanning"),
-      costLiving: byName("costLiving"),
+
+      largePurchases: {
+        answer: byName("largePurchasesYN"),
+        explanation: byName("largePurchases")
+      },
+
+      longTermCare: {
+        answer: byName("longTermCareYN"),
+        explanation: byName("longTermCare")
+      },
+
+      estatePlanning: {
+        answer: byName("estatePlanningYN"),
+        explanation: byName("estatePlanning")
+      },
+
+      costLiving: {
+        answer: byName("costLivingYN"),
+        explanation: byName("costLiving")
+      },
+
       homeValue: byName("homeValue"),
-      downsizing: byName("downsizing"),
-      realEstate: byName("realEstate"),
+
+      downsizing: {
+        answer: byName("downsizingYN"),
+        explanation: byName("downsizing")
+      },
+
+      realEstate: {
+        answer: byName("realEstateYN"),
+        explanation: byName("realEstate")
+      },
+
       totalDebt: byName("totalDebt")
     }
   };

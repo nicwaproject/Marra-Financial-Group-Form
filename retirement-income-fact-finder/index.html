@@ -289,55 +289,85 @@
 <section class="card step confirmation">
   <h2>Additional Retirement Details</h2>
   
+  <!-- Numeric -->
   <div class="field">
     <label>Desired Income in Retirement</label>
     <input type="number" name="desiredIncome" />
   </div>
 
+  <!-- YES / NO + Explanation -->
   <div class="field">
-    <label>Do You have any large purchases planned? Approx. amount & time frame:</label>
-    <textarea name="largePurchases"></textarea>
+    <label>Do you have any large purchases planned?</label>
+    <select name="largePurchasesYN">
+      <option value="">Select</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+    <textarea name="largePurchases" placeholder="If yes, please provide approximate amount & time frame..."></textarea>
   </div>
 
   <div class="field">
     <label>Have you planned for Long Term Care?</label>
-    <textarea name="longTermCare"></textarea>
+    <select name="longTermCareYN">
+      <option value="">Select</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+    <textarea name="longTermCare" placeholder="If yes, please provide details..."></textarea>
   </div>
 
   <div class="field">
     <label>Have you done any estate planning?</label>
-    <textarea name="estatePlanning"></textarea>
+    <select name="estatePlanningYN">
+      <option value="">Select</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+    <textarea name="estatePlanning" placeholder="If yes, please provide details..."></textarea>
   </div>
 
   <div class="field">
     <label>Have you planned for cost-of-living adjustments to income?</label>
-    <textarea name="costLiving"></textarea>
+    <select name="costLivingYN">
+      <option value="">Select</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+    <textarea name="costLiving" placeholder="If yes, please provide details..."></textarea>
   </div>
 
+  <!-- Value -->
   <div class="field">
     <label>Current home value</label>
-    <textarea name="homeValue"></textarea>
+    <input type="number" name="homeValue" />
+  </div>
+
+  <!-- YES / NO + Explanation -->
+  <div class="field">
+    <label>Will you be downsizing?</label>
+    <select name="downsizingYN">
+      <option value="">Select</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+    <textarea name="downsizing" placeholder="If yes, please provide details..."></textarea>
   </div>
 
   <div class="field">
-    <label>Will you be downsizing</label>
-    <textarea name="downsizing"></textarea>
+    <label>Do you own other real estate?</label>
+    <select name="realEstateYN">
+      <option value="">Select</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+    <textarea name="realEstate" placeholder="If yes, please provide current value & details..."></textarea>
   </div>
 
+  <!-- Value -->
   <div class="field">
-    <label>Do you own other real estate? If so, current value:</label>
-    <textarea name="realEstate"></textarea>
+    <label>Total Debt</label>
+    <input type="number" name="totalDebt" />
   </div>
-
-  <div class="field">
-    <label>Total Debt:</label>
-    <textarea name="totalDebt"></textarea>
-  </div>
-
-  
-
-  <hr />
-
 </section>
 
 <!-- STEP 8 (CONFIRMATION) -->
