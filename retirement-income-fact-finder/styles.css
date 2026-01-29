@@ -458,8 +458,39 @@ input[readonly] {
   border-top-right-radius: 0;
 }
 
-.field textarea {
-  display: none;
+
+.sub-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--secondary-color);
+  margin: 24px 0 8px;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  padding-bottom: 6px;
+}
+
+.assets-section input[readonly] {
+  background: #f4f6f8;
+  color: #555;
+  cursor: not-allowed;
+}
+
+/* ===============================
+   HIDE NUMBER INPUT SPINNERS
+================================= */
+
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 @media (max-width: 600px) {

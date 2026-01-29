@@ -19,19 +19,7 @@ const byAdditional = name =>
 const byName = name =>
   document.querySelector(`[name="${name}"]`)?.value || "";
 
-document.addEventListener("change", e => {
-  if (e.target.tagName === "SELECT") {
-    const textarea = e.target.closest(".field")?.querySelector("textarea");
-    if (!textarea) return;
 
-    if (e.target.value === "yes") {
-      textarea.style.display = "block";
-    } else {
-      textarea.style.display = "none";
-      textarea.value = "";
-    }
-  }
-});
 /* ===============================
    STEP NAVIGATION
 ================================= */
@@ -130,6 +118,22 @@ function calcAssetTotals() {
   return totals;
 }
 
+function calcAssetRowCurrentValue() {
+  document.querySelectorAll(".assets-section tbody tr").forEach(row => {
+    const inputs = row.querySelectorAll("input[type='number']");
+    if (inputs.length < 4) return;
+
+    const client = num(inputs[0].value);
+    const spouse = num(inputs[1].value);
+    const joint = num(inputs[2].value);
+
+    const currentValueInput = inputs[3];
+
+    const total = client + spouse + joint;
+
+    currentValueInput.value = total ? total : "";
+  });
+}
 /* ===============================
    PAYLOAD BUILDER (FINAL)
 ================================= */
@@ -175,41 +179,18 @@ function buildPayload() {
     },
 
     additional: {
-      desiredIncome: byAdditional("desiredIncome"),
+      desiredIncome: byName("desiredIncome"),
+      homeValue: byName("homeValue"),
+      totalDebt: byName("totalDebt"),
 
-      largePurchases: {
-        yn: byAdditional("largePurchasesYN"),
-        note: byAdditional("largePurchases")
-      },
+      largePurchasesYN: byName("largePurchasesYN"),
+      longTermCareYN: byName("longTermCareYN"),
+      estatePlanningYN: byName("estatePlanningYN"),
+      costLivingYN: byName("costLivingYN"),
+      downsizingYN: byName("downsizingYN"),
+      realEstateYN: byName("realEstateYN"),
 
-      longTermCare: {
-        yn: byAdditional("longTermCareYN"),
-        note: byAdditional("longTermCare")
-      },
-
-      estatePlanning: {
-        yn: byAdditional("estatePlanningYN"),
-        note: byAdditional("estatePlanning")
-      },
-
-      costLiving: {
-        yn: byAdditional("costLivingYN"),
-        note: byAdditional("costLiving")
-      },
-
-      homeValue: byAdditional("homeValue"),
-
-      downsizing: {
-        yn: byAdditional("downsizingYN"),
-        note: byAdditional("downsizing")
-      },
-
-      realEstate: {
-        yn: byAdditional("realEstateYN"),
-        note: byAdditional("realEstate")
-      },
-
-      totalDebt: byAdditional("totalDebt")
+      additionalComments: byName("additionalComments")
     }
   };
 }
@@ -312,11 +293,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (dateInput) {
     dateInput.value = new Date().toISOString().split("T")[0];
   }
+
+  calcAssetRowCurrentValue();
   showStep(0);
 });
 
 document.addEventListener("input", e => {
   if (e.target.type === "number") {
+    calcAssetRowCurrentValue();
     calcIncomeTotals();
     calcAssetTotals();
   }

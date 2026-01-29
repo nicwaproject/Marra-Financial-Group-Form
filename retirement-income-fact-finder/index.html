@@ -183,7 +183,7 @@
         <td><input type="number" name="savingsClient" /></td>
         <td><input type="number" name="savingsSpouse" /></td>
         <td><input type="number" name="savingsJoint" /></td>
-        <td><input type="number" name="savingsCurrentValue" /></td>
+        <td><input type="number" name="savingsCurrentValue" readonly /></td>
       </tr>
 
       <tr>
@@ -191,7 +191,7 @@
         <td><input type="number" name="checkingClient" /></td>
         <td><input type="number" name="checkingSpouse" /></td>
         <td><input type="number" name="checkingJoint" /></td>
-        <td><input type="number" name="checkingCurrentValue" /></td>
+        <td><input type="number" name="checkingCurrentValue" readonly /></td>
       </tr>
 
       <tr>
@@ -199,7 +199,7 @@
         <td><input type="number" name="cdsClient" /></td>
         <td><input type="number" name="cdsSpouse" /></td>
         <td><input type="number" name="cdsJoint" /></td>
-        <td><input type="number" name="cdsCurrentValue" /></td>
+        <td><input type="number" name="cdsCurrentValue" readonly /></td>
       </tr>
 
       <tr>
@@ -207,7 +207,7 @@
         <td><input type="number" name="annuitiesClient" /></td>
         <td><input type="number" name="annuitiesSpouse" /></td>
         <td><input type="number" name="annuitiesJoint" /></td>
-        <td><input type="number" name="annuitiesCurrentValue" /></td>
+        <td><input type="number" name="annuitiesCurrentValue" readonly /></td>
       </tr>
 
       <tr>
@@ -215,7 +215,7 @@
         <td><input type="number" name="brokerageClient" /></td>
         <td><input type="number" name="brokerageSpouse" /></td>
         <td><input type="number" name="brokerageJoint" /></td>
-        <td><input type="number" name="brokerageCurrentValue" /></td>
+        <td><input type="number" name="brokerageCurrentValue" readonly /></td>
       </tr>
 
       <tr>
@@ -223,7 +223,7 @@
         <td><input type="number" name="cryptocurrencyClient" /></td>
         <td><input type="number" name="cryptocurrencySpouse" /></td>
         <td><input type="number" name="cryptocurrencyJoint" /></td>
-        <td><input type="number" name="cryptocurrencyCurrentValue" /></td>
+        <td><input type="number" name="cryptocurrencyCurrentValue" readonly /></td>
       </tr>
 
       <tr>
@@ -231,7 +231,7 @@
         <td><input type="number" name="goldClient" /></td>
         <td><input type="number" name="goldSpouse" /></td>
         <td><input type="number" name="goldJoint" /></td>
-        <td><input type="number" name="goldCurrentValue" /></td>
+        <td><input type="number" name="goldCurrentValue" readonly /></td>
       </tr>
 
       <tr>
@@ -239,7 +239,7 @@
         <td><input type="number" name="inheritanceClient" /></td>
         <td><input type="number" name="inheritanceSpouse" /></td>
         <td><input type="number" name="inheritanceJoint" /></td>
-        <td><input type="number" name="inheritanceCurrentValue" /></td>
+        <td><input type="number" name="inheritanceCurrentValue" readonly /></td>
       </tr>
 
       <tr>
@@ -247,7 +247,7 @@
         <td><input type="number" name="iraClient" /></td>
         <td><input type="number" name="iraSpouse" /></td>
         <td><input type="number" name="iraJoint" /></td>
-        <td><input type="number" name="iraCurrentValue" /></td>
+        <td><input type="number" name="iraCurrentValue" readonly /></td>
       </tr>
 
       <tr>
@@ -255,7 +255,7 @@
         <td><input type="number" name="rothIraClient" /></td>
         <td><input type="number" name="rothIraSpouse" /></td>
         <td><input type="number" name="rothIraJoint" /></td>
-        <td><input type="number" name="rothIraCurrentValue" /></td>
+        <td><input type="number" name="rothIraCurrentValue" readonly /></td>
       </tr>
 
       <tr>
@@ -263,7 +263,7 @@
         <td><input type="number" name="401kClient" /></td>
         <td><input type="number" name="401kSpouse" /></td>
         <td><input type="number" name="401kJoint" /></td>
-        <td><input type="number" name="401kCurrentValue" /></td>
+        <td><input type="number" name="401kCurrentValue" readonly /></td>
       </tr>
 
       <tr>
@@ -271,7 +271,7 @@
         <td><input type="number" name="roth401kClient" /></td>
         <td><input type="number" name="roth401kSpouse" /></td>
         <td><input type="number" name="roth401kJoint" /></td>
-        <td><input type="number" name="roth401kCurrentValue" /></td>
+        <td><input type="number" name="roth401kCurrentValue" readonly /></td>
       </tr>
 
       <tr class="table-total">
@@ -286,16 +286,32 @@
 </section>
 
 <!-- STEP 4 (ADDITIONAL DETAIL) -->
-<section class="card step confirmation additional-section">
+<section class="card step additional-section">
   <h2>Additional Retirement Details</h2>
-  
-  <!-- Numeric -->
+
+  <!-- ===============================
+       NUMERIC INFORMATION
+  ================================= -->
+
   <div class="field">
     <label>Desired Income in Retirement</label>
     <input type="number" name="desiredIncome" />
   </div>
 
-  <!-- YES / NO + Explanation -->
+  <div class="field">
+    <label>Current Home Value</label>
+    <input type="number" name="homeValue" />
+  </div>
+
+  <div class="field">
+    <label>Total Debt</label>
+    <input type="number" name="totalDebt" />
+  </div>
+
+  <!-- ===============================
+       YES / NO QUESTIONS
+  ================================= -->
+
   <div class="field">
     <label>Do you have any large purchases planned?</label>
     <select name="largePurchasesYN">
@@ -303,7 +319,6 @@
       <option value="yes">Yes</option>
       <option value="no">No</option>
     </select>
-    <textarea name="largePurchases" placeholder="If yes, please provide approximate amount & time frame..."></textarea>
   </div>
 
   <div class="field">
@@ -313,7 +328,6 @@
       <option value="yes">Yes</option>
       <option value="no">No</option>
     </select>
-    <textarea name="longTermCare" placeholder="If yes, please provide details..."></textarea>
   </div>
 
   <div class="field">
@@ -323,7 +337,6 @@
       <option value="yes">Yes</option>
       <option value="no">No</option>
     </select>
-    <textarea name="estatePlanning" placeholder="If yes, please provide details..."></textarea>
   </div>
 
   <div class="field">
@@ -333,16 +346,8 @@
       <option value="yes">Yes</option>
       <option value="no">No</option>
     </select>
-    <textarea name="costLiving" placeholder="If yes, please provide details..."></textarea>
   </div>
 
-  <!-- Value -->
-  <div class="field">
-    <label>Current home value</label>
-    <input type="number" name="homeValue" />
-  </div>
-
-  <!-- YES / NO + Explanation -->
   <div class="field">
     <label>Will you be downsizing?</label>
     <select name="downsizingYN">
@@ -350,7 +355,6 @@
       <option value="yes">Yes</option>
       <option value="no">No</option>
     </select>
-    <textarea name="downsizing" placeholder="If yes, please provide details..."></textarea>
   </div>
 
   <div class="field">
@@ -360,13 +364,19 @@
       <option value="yes">Yes</option>
       <option value="no">No</option>
     </select>
-    <textarea name="realEstate" placeholder="If yes, please provide current value & details..."></textarea>
   </div>
 
-  <!-- Value -->
+  <!-- ===============================
+       ADDITIONAL INFORMATION
+  ================================= -->
+
   <div class="field">
-    <label>Total Debt</label>
-    <input type="number" name="totalDebt" />
+    <label>Please provide any additional details or explanations</label>
+    <textarea
+      name="additionalComments"
+      placeholder="Use this space to provide more details about any of the answers above..."
+      rows="4"
+    ></textarea>
   </div>
 </section>
 
