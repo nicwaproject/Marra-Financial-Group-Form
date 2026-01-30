@@ -59,8 +59,6 @@ function calcIncomeTotals() {
     client: 0,
     spouse: 0,
     joint: 0,
-    currentValue: 0,
-    currentInvestment: 0
   };
 
   document
@@ -70,20 +68,14 @@ function calcIncomeTotals() {
       if (i.name.endsWith("Client")) totals.client += v;
       if (i.name.endsWith("Spouse")) totals.spouse += v;
       if (i.name.endsWith("Joint")) totals.joint += v;
-      if (i.name.endsWith("CurrentValue")) totals.currentValue += v;
-      if (i.name.endsWith("CurrentInvestment")) totals.currentInvestment += v;
     });
 
-    document.getElementById("income-client-total").textContent =
+  document.getElementById("income-client-total").textContent =
     "$" + totals.client.toLocaleString("en-US");
   document.getElementById("income-spouse-total").textContent =
     "$" + totals.spouse.toLocaleString("en-US");
   document.getElementById("income-joint-total").textContent =
     "$" + totals.joint.toLocaleString("en-US");
-  document.getElementById("income-currentValue-total").textContent =
-    "$" + totals.currentValue.toLocaleString("en-US");
-  document.getElementById("income-currentInvestment-total").textContent =
-    "$" + totals.currentInvestment.toLocaleString("en-US");
 
   return totals;
 }
@@ -203,8 +195,6 @@ function buildIncomeRow(prefix) {
     client: num(byName(`${prefix}Client`)),
     spouse: num(byName(`${prefix}Spouse`)),
     joint: num(byName(`${prefix}Joint`)),
-    currentValue: num(byName(`${prefix}CurrentValue`)),
-    currentInvestment: num(byName(`${prefix}CurrentInvestment`))
   };
 }
 

@@ -81,7 +81,11 @@
 
 <!-- STEP 2 (MONTHLY INCOME) -->
 <section class="card step monthly-income">
-  <h2>Monthly Income Sources</h2>
+  <h2>Monthly Income Sources
+    <span class="income-note">
+    (Social Security should be the age you began or will receive)
+  </span>
+  </h2>
 
   <div class="table-scroll">
   <table class="data-table">
@@ -91,8 +95,6 @@
         <th>Client</th>
         <th>Spouse</th>
         <th>Joint</th>
-        <th>Current Value</th>
-        <th>Current Investment</th>
       </tr>
     </thead>
     <tbody>
@@ -101,8 +103,6 @@
         <td><input type="number" name="ss62Client" /></td>
         <td><input type="number" name="ss62Spouse" /></td>
         <td><input type="number" name="ss62Joint" /></td>
-        <td><input type="number" name="ss62CurrentValue"></td>
-        <td><input type="number" name="ss62CurrentInvestment"></td>
       </tr>
 
       <tr>
@@ -110,8 +110,6 @@
         <td><input type="number" name="ss67Client" /></td>
         <td><input type="number" name="ss67Spouse" /></td>
         <td><input type="number" name="ss67Joint" /></td>
-        <td><input type="number" name="ss67CurrentValue"></td>
-        <td><input type="number" name="ss67CurrentInvestment"></td>
       </tr>
 
       <tr>
@@ -119,8 +117,6 @@
         <td><input type="number" name="ss70Client" /></td>
         <td><input type="number" name="ss70Spouse" /></td>
         <td><input type="number" name="ss70Joint" /></td>
-        <td><input type="number" name="ss70CurrentValue"></td>
-        <td><input type="number" name="ss70CurrentInvestment"></td>
       </tr>
 
       <tr>
@@ -128,8 +124,6 @@
         <td><input type="number" name="pensionClient" /></td>
         <td><input type="number" name="pensionSpouse" /></td>
         <td><input type="number" name="pensionJoint" /></td>
-        <td><input type="number" name="pensionCurrentValue"></td>
-        <td><input type="number" name="pensionCurrentInvestment"></td>
       </tr>
 
       <tr>
@@ -137,8 +131,6 @@
         <td><input type="number" name="rentalClient" /></td>
         <td><input type="number" name="rentalSpouse" /></td>
         <td><input type="number" name="rentalJoint" /></td>
-        <td><input type="number" name="rentalCurrentValue"></td>
-        <td><input type="number" name="rentalCurrentInvestment"></td>
       </tr>
 
       <tr>
@@ -146,8 +138,6 @@
         <td><input type="number" name="otherClient" /></td>
         <td><input type="number" name="otherSpouse" /></td>
         <td><input type="number" name="otherJoint" /></td>
-        <td><input type="number" name="otherCurrentValue"></td>
-        <td><input type="number" name="otherCurrentInvestment"></td>
       </tr>
 
       <tr class="table-total">
@@ -155,8 +145,6 @@
         <td><span id="income-client-total">$0</span></td>
         <td><span id="income-spouse-total">$0</span></td>
         <td><span id="income-joint-total">$0</span></td>
-        <td><span id="income-currentValue-total">$0</span></td>
-        <td><span id="income-currentInvestment-total">$0</span></td>
       </tr>
     </tbody>
   </table>
