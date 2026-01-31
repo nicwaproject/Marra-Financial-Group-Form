@@ -245,7 +245,7 @@ async function submitForm(payload) {
     console.log("API success:", data);
 
     window.location.href =
-  "https://nicwaproject.github.io/Marra-Financial-Group-Form/thank-you/";
+  "https://marrafinancialgroup.com/forms/thank-you/";
 
     // Optional: redirect / reset
     // window.location.href = "/thank-you.html";
